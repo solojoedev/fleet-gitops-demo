@@ -1,0 +1,74 @@
+agent_options:
+controls:
+  enable_disk_encryption: false
+  enable_recovery_lock_password: false
+  ios_updates:
+    deadline:
+    minimum_version:
+    update_new_hosts:
+  ipados_updates:
+    deadline:
+    minimum_version:
+    update_new_hosts:
+  macos_updates:
+    deadline:
+    minimum_version:
+    update_new_hosts:
+  scripts:
+  windows_require_bitlocker_pin: false
+  windows_updates:
+    deadline_days:
+    grace_period_days:
+labels:
+name: Corporate-macOS
+policies:
+- calendar_events_enabled: false
+  conditional_access_enabled: false
+  continuous_automations_enabled: false
+  critical: false
+  description: Policy triggers automatic install of Chrome Remote Desktop on each
+    host that's missing this software.
+  install_software:
+    fleet_maintained_app_slug: chrome-remote-desktop-host/darwin
+  name: '[Install software] Chrome Remote Desktop'
+  platform: darwin
+  query: SELECT 1 FROM apps WHERE bundle_identifier = 'com.google.chromeremotedesktop.me2me-host-uninstaller';
+  resolution:
+  type: dynamic
+  webhooks_and_tickets_enabled: false
+- calendar_events_enabled: false
+  conditional_access_enabled: false
+  continuous_automations_enabled: false
+  critical: false
+  description:
+  name: FireFox Installed _ Corp Macs
+  platform: darwin
+  query: SELECT 1 FROM apps WHERE name = 'Firefox.app';
+  resolution:
+  type: dynamic
+  webhooks_and_tickets_enabled: false
+reports:
+settings:
+  features:
+    enable_host_users: true
+    enable_software_inventory: true
+    historical_data:
+      uptime: true
+      vulnerabilities: true
+  host_expiry_settings:
+    host_expiry_enabled: false
+    host_expiry_window: 0
+  integrations:
+    conditional_access_enabled:
+    google_calendar:
+  webhook_settings:
+    failing_policies_webhook:
+      destination_url:
+      enable_failing_policies_webhook: false
+      host_batch_size: 0
+    host_status_webhook:
+software:
+  fleet_maintained_apps:
+  - categories:
+    - "🖥️ Productivity"
+    slug: chrome-remote-desktop-host/darwin
