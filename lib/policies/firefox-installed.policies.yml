@@ -1,0 +1,5 @@
+- name: FireFox Installed _ Corp Macs
+  platform: darwin
+  description:
+  query: "SELECT 1 FROM apps WHERE name = 'Firefox.app';"
+  resolution:

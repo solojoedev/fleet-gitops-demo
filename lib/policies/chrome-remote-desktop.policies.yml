@@ -1,0 +1,14 @@
+- calendar_events_enabled: false
+  conditional_access_enabled: false
+  continuous_automations_enabled: false
+  critical: false
+  description: Policy triggers automatic install of Chrome Remote Desktop on each
+    host that's missing this software.
+  install_software:
+    fleet_maintained_app_slug: chrome-remote-desktop-host/darwin
+  name: '[Install software] Chrome Remote Desktop'
+  platform: darwin
+  query: SELECT 1 FROM apps WHERE bundle_identifier = 'com.google.chromeremotedesktop.me2me-host-uninstaller';
+  resolution:
+  type: dynamic
+  webhooks_and_tickets_enabled: false

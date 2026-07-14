@@ -1,0 +1,10 @@
+- name: Windows - Enable BitLocker
+  platform: windows
+  description: "This policy checks if BitLocker (disk encryption) is enabled on the C: volume."
+  resolution: As an IT admin, turn on disk encryption in Fleet.
+  query: SELECT * FROM bitlocker_info WHERE drive_letter='C:' AND protection_status = 1;
+- name: Windows - Disable guest account
+  platform: windows
+  description: This policy checks if the guest account is disabled.
+  resolution: "As an IT admin, deploy a Windows profile disabling the guest account."
+  query: SELECT 1 FROM mdm_bridge where mdm_command_input = "<SyncBody><Get><CmdID>1</CmdID><Item><Target><LocURI>./Device/Vendor/MSFT/Policy/Result/LocalPoliciesSecurityOptions/Accounts_EnableGuestAccountStatus</LocURI></Target></Item></Get></SyncBody>" and CAST(mdm_command_output AS INT) = 0;
